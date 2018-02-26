@@ -12,27 +12,35 @@ var scenes;
 (function (scenes) {
     var PlayScene = /** @class */ (function (_super) {
         __extends(PlayScene, _super);
-        // Public Properties
-        // Constructor
+        //Public Properties
+        //Constructor
         function PlayScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this.Start();
             return _this;
         }
-        // Private Mathods
-        // Public Methods
-        // Initialize Game Variables and objects
+        //Private Methods
+        PlayScene.prototype.nextButtonClick = function () {
+            objects.Game.currentScene = config.Scene.OVER;
+        };
+        PlayScene.prototype.backButtonClick = function () {
+            objects.Game.currentScene = config.Scene.START;
+        };
+        //Public Methods
         PlayScene.prototype.Start = function () {
-            this._ocean = new objects.Ocean(this.assetManager);
+            this._playLabel = new objects.Label("Game Playing", "40px", "Consolas", "#000000", 320, 240, true);
+            this._nextButton = new objects.Button(this.assetManager, "nextButton", 500, 340);
+            this._backButton = new objects.Button(this.assetManager, "backButton", 140, 340);
             this.Main();
         };
         PlayScene.prototype.Update = function () {
-            this._ocean.Update();
         };
-        // This is where the fun happens
         PlayScene.prototype.Main = function () {
-            // add the ocean to the scene
-            this.addChild(this._ocean);
+            this.addChild(this._playLabel);
+            this.addChild(this._nextButton);
+            this.addChild(this._backButton);
+            this._nextButton.on("click", this.nextButtonClick);
+            this._backButton.on("click", this.backButtonClick);
         };
         return PlayScene;
     }(objects.Scene));

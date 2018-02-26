@@ -12,18 +12,17 @@ var objects;
 (function (objects) {
     var Scene = /** @class */ (function (_super) {
         __extends(Scene, _super);
-        // Constructor
+        //Constructor
         function Scene(assetManager) {
             var _this = _super.call(this) || this;
             _this.assetManager = assetManager;
             return _this;
         }
-        // Private Methods
-        // Public Methods
+        //Private Methods
+        //Public Methods
         Scene.prototype.Start = function () {
         };
         Scene.prototype.Update = function () {
-            return 0;
         };
         Scene.prototype.Main = function () {
         };

@@ -1,58 +1,66 @@
 /// <reference path="_references.ts"/>
 // IIFE - Immediately Invoked Function Expression
 (function () {
-    // Game Variables
+    //Game variables
     var canvas = document.getElementById("canvas");
     var stage;
     var helloLabel;
-    var clickMeButton;
+    var startButton;
     var assetManager;
     var assetManifest;
     var currentScene;
+    var currentState;
     assetManifest = [
-        { id: "clickMeButton", src: "./Assets/images/clickMeButton.png" },
-        { id: "startButton", src: "./Assets/images/startButton.png" }
+        { id: "toddlerTrouble", src: "./Assets/images/toddlerTrouble.png" },
+        { id: "startButton", src: "./Assets/images/startButton.png" },
+        { id: "howToPlayButton", src: "./Assets/images/howToPlayButton.png" },
+        { id: "optionsButton", src: "./Assets/images/optionsButton.png" },
+        { id: "nextButton", src: "./Assets/images/nextButton.png" },
+        { id: "backButton", src: "./Assets/images/backButton.png" },
+        { id: "restartButton", src: "./Assets/images/restartButton.png" }
     ];
-    // preloads assets
+    //preloads assets
     function Init() {
-        console.log("Initialization Started...");
-        assetManager = new createjs.LoadQueue(); // creates the assetManager object
-        assetManager.installPlugin(createjs.Sound); // asset manager can also load sounds
+        console.log("Initialization started");
+        assetManager = new createjs.LoadQueue(); //creates the asset manager object
+        assetManager.installPlugin(createjs.Sound); //assest manager can also load sound
         assetManager.loadManifest(assetManifest);
         assetManager.on("complete", Start, this);
     }
     function Start() {
-        console.log("Starting Application...");
+        console.log("Starting Application");
         stage = new createjs.Stage(canvas);
-        stage.enableMouseOver(20); // turn this on for buttons
-        createjs.Ticker.framerate = 60; // 60 FPS
+        stage.enableMouseOver(20); //turn this on for buttons
+        createjs.Ticker.framerate = 60; //60 FPS
         createjs.Ticker.on("tick", Update);
         objects.Game.currentScene = config.Scene.START;
+        currentState = config.Scene.START;
         Main();
     }
     function Update() {
-        // if the scene that is playing returns another current scene
-        // then call Main again and switch the scene
-        if (currentScene.Update() != objects.Game.currentScene) {
-            console.log(objects.Game.currentScene);
+        if (currentState != objects.Game.currentScene) {
             Main();
         }
-        stage.update(); // redraws the stage
+        if (currentScene != null) {
+            currentScene.Update();
+        }
+        stage.update(); //redraws stage
     }
     function Main() {
+        stage.removeAllChildren();
         switch (objects.Game.currentScene) {
             case config.Scene.START:
-                stage.removeAllChildren();
                 currentScene = new scenes.StartScene(assetManager);
-                stage.addChild(currentScene);
                 break;
             case config.Scene.PLAY:
-                // do some other stuff
+                currentScene = new scenes.PlayScene(assetManager);
                 break;
             case config.Scene.OVER:
-                // do the final stuff
+                currentScene = new scenes.OverScene(assetManager);
                 break;
         }
+        currentState = objects.Game.currentScene;
+        stage.addChild(currentScene);
     }
     window.onload = Init;
 })();
