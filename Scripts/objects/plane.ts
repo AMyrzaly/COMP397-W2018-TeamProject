@@ -45,6 +45,14 @@ module objects {
        this.x += 5;
      }
 
+     if(objects.Game.keyboardManager.moveForward){
+       this.y -= 5;
+     }
+
+     if(objects.Game.keyboardManager.moveBackward){
+       this.y += 5;
+     }
+
     }
 
     // check to see if some boundary has been passed
@@ -57,6 +65,14 @@ module objects {
       // left boundary
       if(this.x <= this.halfWidth) {
         this.x = this.halfWidth;
+      }
+
+      if(this.y >= 480 - this.halfHeight) {
+        this.y = 480 - this.halfHeight;
+      }
+
+      if(this.y <= this.halfHeight) {
+        this.y = this.halfHeight;
       }
     }
   }

@@ -12,9 +12,9 @@ var objects;
 (function (objects) {
     var Label = /** @class */ (function (_super) {
         __extends(Label, _super);
-        //Private Instance variables
-        //Public Properties
-        //Constructor
+        // Private Instance Variables
+        // Public Propoerties
+        // Constructor
         function Label(labelString, fontSize, fontFamily, fontColour, x, y, isCentered) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }

@@ -46,6 +46,12 @@ var objects;
             if (objects.Game.keyboardManager.moveRight) {
                 this.x += 5;
             }
+            if (objects.Game.keyboardManager.moveForward) {
+                this.y -= 5;
+            }
+            if (objects.Game.keyboardManager.moveBackward) {
+                this.y += 5;
+            }
         };
         // check to see if some boundary has been passed
         Plane.prototype.CheckBounds = function () {
@@ -56,6 +62,12 @@ var objects;
             // left boundary
             if (this.x <= this.halfWidth) {
                 this.x = this.halfWidth;
+            }
+            if (this.y >= 480 - this.halfHeight) {
+                this.y = 480 - this.halfHeight;
+            }
+            if (this.y <= this.halfHeight) {
+                this.y = this.halfHeight;
             }
         };
         return Plane;

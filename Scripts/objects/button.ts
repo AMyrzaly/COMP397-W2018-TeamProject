@@ -1,11 +1,11 @@
 module objects {
     export class Button extends createjs.Bitmap {
-        //Private Instances Variables
+        // Private Instance Variables
 
-        //Public Properties
+        // Public Properties
 
-        //Constructors
-        constructor(assetManager: createjs.LoadQueue, imageString: string, x: number = 0, y: number = 0) {
+        // Constructor
+        constructor(assetManager: createjs.LoadQueue, imageString:string, x:number= 0, y:number = 0 ) {
             super(assetManager.getResult(imageString));
 
             this.regX = this.getBounds().width * 0.5;
@@ -17,17 +17,15 @@ module objects {
             this.on("mouseover", this._mouseOver);
             this.on("mouseout", this._mouseOut);
         }
-
-        //Private Methods
-        private _mouseOver(): void {
+        // Private Methods
+        private _mouseOver():void {
             this.alpha = 0.7;
         }
 
-        private _mouseOut(): void {
+        private _mouseOut():void {
             this.alpha = 1.0;
         }
 
-        //Public Methods
-
+        // Public Methods
     }
 }

@@ -12,9 +12,9 @@ var objects;
 (function (objects) {
     var Button = /** @class */ (function (_super) {
         __extends(Button, _super);
-        //Private Instances Variables
-        //Public Properties
-        //Constructors
+        // Private Instance Variables
+        // Public Properties
+        // Constructor
         function Button(assetManager, imageString, x, y) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
@@ -27,7 +27,7 @@ var objects;
             _this.on("mouseout", _this._mouseOut);
             return _this;
         }
-        //Private Methods
+        // Private Methods
         Button.prototype._mouseOver = function () {
             this.alpha = 0.7;
         };

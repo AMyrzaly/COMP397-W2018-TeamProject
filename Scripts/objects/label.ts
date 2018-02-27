@@ -1,11 +1,12 @@
 module objects {
     export class Label extends createjs.Text {
-        //Private Instance variables
+        // Private Instance Variables
 
-        //Public Properties
+        // Public Propoerties
 
-        //Constructor
-        constructor(labelString: string,
+        // Constructor
+        constructor(
+            labelString: string,
             fontSize: string,
             fontFamily: string,
             fontColour: string,
@@ -14,7 +15,7 @@ module objects {
             isCentered: boolean = false) {
             super(labelString, fontSize + " " + fontFamily, fontColour);
 
-            if (isCentered) {
+            if(isCentered) {
                 this.regX = this.getMeasuredWidth() * 0.5;
                 this.regY = this.getMeasuredHeight() * 0.5;
             }
@@ -23,8 +24,8 @@ module objects {
             this.y = y;
         }
 
-        //Private Methods
+        // Private Methods
 
-        //Public Methods
+        // Public Methods
     }
 }
